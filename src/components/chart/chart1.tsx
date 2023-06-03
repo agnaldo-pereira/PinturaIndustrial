@@ -75,24 +75,29 @@ const ChartCards = () => {
         type: "category",
         boundaryGap: false,
         data: ["", "", "", "", "", "", "", "", "", ""],
+        //data: [],
       },
     ],
     yAxis: [
       {
         type: "value",
         min: -10,
-        //max: 100,
+        max: 100,
       },
     ],
     series: [
       {
         name: "Temperatura",
         type: "line",
+        lineStyle: {
+          color: "rgba(255, 165, 0, 1)"
+        },
+        itemStyle: {
+          color: "rgba(255, 165, 0, 1)"
+        },
         //stack: "null",
         areaStyle: {
-          color: "rgba(255, 165, 0, 1)", // Laranja com transparência
-          //borderColor: "rgba(255, 165, 0, 1)", // Cor da borda da temperatura
-          borderColor: "inherit", 
+          color: "rgba(255, 165, 0, 0.9)",  
         },
         emphasis: {
           focus: "series",
@@ -102,12 +107,15 @@ const ChartCards = () => {
       {
         name: "Chuva",
         type: "line",
+        lineStyle: {
+          color: "rgba(0, 0, 255, 1)"
+        },
+        itemStyle: {
+          color: "rgba(0, 0, 255, 1)"
+        },
         //stack: "null",
-        borderColor: "rgba(0, 0, 255, 1)",
         areaStyle: {
-          color: "rgba(0, 0, 255, 1)", // Azul com transparência
-          //borderColor: "rgba(0, 0, 255, 1)", // Cor da borda da chuva
-          borderColor: "inherit", 
+          color: "rgba(0, 0, 255, 0.5)",  
         },
         emphasis: {
           focus: "series",
@@ -117,11 +125,15 @@ const ChartCards = () => {
       {
         name: "Umidade",
         type: "line",
+        lineStyle: {
+          color: "rgba(78, 197, 241, 1)"
+        },
+        itemStyle: {
+          color: "rgba(78, 197, 241, 1)"
+        },
         //stack: "null",
         areaStyle: {
-          color: "rgba(0, 128, 0, 1)", // Verde com transparência
-          //borderColor: "rgba(0, 128, 0, 1)", // Cor da borda da umidade
-          borderColor: "inherit", 
+          color: "rgba(78, 197, 241, 0.5)", 
         },
         emphasis: {
           focus: "series",
@@ -134,7 +146,7 @@ const ChartCards = () => {
   return (
     <ReactEcharts
       option={options}
-      style={{ width: "100%", height: "400px" }}
+      style={{ width: "100%", height: "300px" }}
     ></ReactEcharts>
   );
 };

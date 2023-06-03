@@ -3,7 +3,11 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import Chart from './chart/chart1';
+import Chart1 from './chart/chart1';
+import Chart2 from './chart/chart2';
+import Chart3 from './chart/chart3';
+import paintGif from '../assets/paint.gif';
+
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -17,21 +21,25 @@ export default function BasicGrid() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
-        <Grid item xs={8}>
+        <Grid item xs={7}>
           <Item>
-            
-        <Chart/>
-
+            <Chart1/>
           </Item>
         </Grid>
-        <Grid item xs={4}>
-          <Item>xs=4</Item>
+        <Grid item xs={5}>
+          <Item>
+            <Chart2/>
+          </Item> 
         </Grid>
-        <Grid item xs={4}>
-          <Item>xs=4</Item>
+        <Grid item xs={7}>
+          <Item>
+            <img src={paintGif} alt="Paint GIF" style={{ height: '295px' }}/>
+          </Item>
         </Grid>
-        <Grid item xs={8}>
-          <Item>xs=8</Item>
+        <Grid item xs={5}>
+          <Item>
+            <Chart3/>
+          </Item>
         </Grid>
       </Grid>
     </Box>
