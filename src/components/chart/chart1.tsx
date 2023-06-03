@@ -1,391 +1,142 @@
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import ReactEcharts from "echarts-for-react";
 
-/*const options = {
-
-  grid: {
-
-    left: 0,
-
-    right: 0,
-
-    bottom: 0,
-
-    top: 0,
-
-  },
-
-  tooltip: {
-
-    trigger: "axis",
-
-    show: false,
-
-  },
-
-
-
-
-  legend: {
-
-    data: ["Evaporation", "Precipitation", "Temperature"],
-
-    show: false,
-
-  },
-
-  xAxis: [
-
-    {
-
-      type: "category",
-
-      data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-
-      axisPointer: {
-
-        type: "shadow",
-
-      },
-
-      boundaryGap: false,
-
-      show: false,
-
-    },
-
-  ],
-
-  yAxis: [
-
-    {
-
-      type: "value",
-
-      name: "Precipitation",
-
-      min: 0,
-
-      max: 24,
-
-      interval: 50,
-
-      axisLabel: {
-
-        formatter: "{value} hs",
-
-      },
-
-      show: false,
-
-    },
-
-    {
-
-      type: "value",
-
-      name: "Temperatura",
-
-      min: 0,
-
-      max: 100,
-
-      interval: 5,
-
-      axisLabel: {
-
-        formatter: "{value} °C",
-
-      },
-
-      show: false,
-
-    },
-
-  ],
-
-  series: [
-
-    {
-
-      name: "Nível",
-
-      type: "line",
-
-      smooth: true,
-
-      areaStyle: {},
-
-      showSymbol: false,
-
-      yAxisIndex: 1,
-
-      color: "#fafa7b",
-
-      z: 1,
-
-      tooltip: {
-
-        valueFormatter: function (value: any) {
-
-          return value + "%";
-
-        },
-
-      },
-
-      data: [80, 70, 75, 80, 75, 75, 85, 80, 80, 80],
-
-    },
-
-    {
-
-      name: "Média mínima",
-
-      type: "line",
-
-      color: "#2531d4",
-
-      showSymbol: false,
-
-      smooth: true,
-
-      yAxisIndex: 1,
-
-      z: 3,
-
-      lineStyle: {
-
-        opacity: 0,
-
-      },
-
-      stack: "sombra",
-
-      tooltip: {
-
-        valueFormatter: function (value: any) {
-
-          return value + "°C";
-
-        },
-
-      },
-
-      data: [15, 14, 13, 10, 18, 20, 23, 23, 23, 23],
-
-    },
-
-
-
-
-    {
-
-      name: "Media Máxima",
-
-      type: "line",
-
-      smooth: true,
-
-      color: "#ff3434",
-
-      showSymbol: false,
-
-      yAxisIndex: 1,
-
-      z: 3,
-
-      lineStyle: {
-
-        opacity: 0,
-
-      },
-
-      stack: "sombra",
-
-      areaStyle: {
-
-        color: "#ccc",
-
-      },
-
-      tooltip: {
-
-        valueFormatter: function (value: any) {
-
-          return value + "°C";
-
-        },
-
-      },
-
-      data: [25, 26, 30, 28, 27, 33, 34, 34, 34, 34],
-
-    },
-
-    {
-
-      name: "Média",
-
-      type: "line",
-
-      smooth: true,
-
-      color: "#42bb42",
-
-      showSymbol: false,
-
-      yAxisIndex: 1,
-
-      z: 3,
-
-      tooltip: {
-
-        valueFormatter: function (value: any) {
-
-          return value + "°C";
-
-        },
-
-      },
-
-      data: [20, 18, 16, 15, 22, 24, 28, 28, 28, 29],
-
-    },
-
-    {
-
-      name: "Horas",
-
-      color: "#8b9ef1",
-
-      areaStyle: {},
-
-      type: "line",
-
-      barWidth: "60%",
-
-      smooth: true,
-
-      z: 2,
-
-      tooltip: {
-
-        valueFormatter: function (value: any) {
-
-          return value + " hs";
-
-        },
-
-      },
-
-      data: [12, 10, 8, 5, 10, 11, 6, 0, 0, 3],
-
-    },
-
-  ],
-
-};*/
-
-const options = {
+interface Feed {
+  field2: number;
+  field3: number;
+  field6: number;
+}
+
+const ChartCards = () => {
+  const [data, setData] = useState<number[][]>([]);
+
+  const fetchData = async () => {
+    try {
+      const response3 = await axios.get<any>(
+        "https://api.thingspeak.com/channels/1956370/fields/6.json?results=10"
+      );
+      const response1 = await axios.get<any>(
+        "https://api.thingspeak.com/channels/1956370/fields/2.json?results=10"
+      );
+      const response2 = await axios.get<any>(
+        "https://api.thingspeak.com/channels/1956370/fields/3.json?results=10"
+      );
+
+      const data3: number[] = response3.data.feeds.map((feed: Feed) => feed.field6); // Chuva
+      const data2: number[] = response2.data.feeds.map((feed: Feed) => feed.field3); // Umidade do ar
+      const data1: number[] = response1.data.feeds.map((feed: Feed) => feed.field2); // Temperatura do ar
+
+      setData([data1, data2, data3]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+
+    const interval = setInterval(fetchData, 10000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  const options = {
     title: {
-      text: 'Stacked Area Chart'
+      text: "Estação meteorológica",
     },
     tooltip: {
-      trigger: 'axis',
+      trigger: "axis",
       axisPointer: {
-        type: 'cross',
+        type: "cross",
         label: {
-          backgroundColor: '#6a7985'
-        }
-      }
+          backgroundColor: "#6a7985",
+        },
+      },
     },
     legend: {
-      data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
+      data: ["Temperatura", "Chuva", "Umidade"],
     },
     toolbox: {
       feature: {
-        saveAsImage: {}
-      }
+        saveAsImage: {},
+      },
     },
     grid: {
-      left: '3%',
-      right: '4%',
-      bottom: '3%',
-      containLabel: true
+      left: "3%",
+      right: "4%",
+      bottom: "3%",
+      containLabel: true,
     },
     xAxis: [
       {
-        type: 'category',
+        type: "category",
         boundaryGap: false,
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-      }
+        data: ["", "", "", "", "", "", "", "", "", ""],
+      },
     ],
     yAxis: [
       {
-        type: 'value'
-      }
+        type: "value",
+        min: -10,
+        //max: 100,
+      },
     ],
     series: [
       {
-        name: 'Email',
-        type: 'line',
-        stack: 'Total',
-        areaStyle: {},
-        emphasis: {
-          focus: 'series'
+        name: "Temperatura",
+        type: "line",
+        //stack: "null",
+        areaStyle: {
+          color: "rgba(255, 165, 0, 1)", // Laranja com transparência
+          //borderColor: "rgba(255, 165, 0, 1)", // Cor da borda da temperatura
+          borderColor: "inherit", 
         },
-        data: [120, 132, 101, 134, 90, 230, 210]
+        emphasis: {
+          focus: "series",
+        },
+        data: data[0] || [],
       },
       {
-        name: 'Union Ads',
-        type: 'line',
-        stack: 'Total',
-        areaStyle: {},
-        emphasis: {
-          focus: 'series'
+        name: "Chuva",
+        type: "line",
+        //stack: "null",
+        borderColor: "rgba(0, 0, 255, 1)",
+        areaStyle: {
+          color: "rgba(0, 0, 255, 1)", // Azul com transparência
+          //borderColor: "rgba(0, 0, 255, 1)", // Cor da borda da chuva
+          borderColor: "inherit", 
         },
-        data: [220, 182, 191, 234, 290, 330, 310]
+        emphasis: {
+          focus: "series",
+        },
+        data: data[2] || [],
       },
       {
-        name: 'Video Ads',
-        type: 'line',
-        stack: 'Total',
-        areaStyle: {},
-        emphasis: {
-          focus: 'series'
+        name: "Umidade",
+        type: "line",
+        //stack: "null",
+        areaStyle: {
+          color: "rgba(0, 128, 0, 1)", // Verde com transparência
+          //borderColor: "rgba(0, 128, 0, 1)", // Cor da borda da umidade
+          borderColor: "inherit", 
         },
-        data: [150, 232, 201, 154, 190, 330, 410]
+        emphasis: {
+          focus: "series",
+        },
+        data: data[1] || [],
       },
-      {
-        name: 'Direct',
-        type: 'line',
-        stack: 'Total',
-        areaStyle: {},
-        emphasis: {
-          focus: 'series'
-        },
-        data: [320, 332, 301, 334, 390, 330, 320]
-      },
-      {
-        name: 'Search Engine',
-        type: 'line',
-        stack: 'Total',
-        label: {
-          show: true,
-          position: 'top'
-        },
-        areaStyle: {},
-        emphasis: {
-          focus: 'series'
-        },
-        data: [820, 932, 901, 934, 1290, 1330, 1320]
-      }
-    ]
+    ],
   };
 
+  return (
+    <ReactEcharts
+      option={options}
+      style={{ width: "100%", height: "400px" }}
+    ></ReactEcharts>
+  );
+};
 
-export default function ChartCards() {
-
-  return <ReactEcharts option={options} style={{ width: "100%", height: "400px" }}></ReactEcharts>;
-
-}
+export default ChartCards;
