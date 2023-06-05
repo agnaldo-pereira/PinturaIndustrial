@@ -6,6 +6,7 @@ import Grid from '@mui/material/Grid';
 import Chart1 from './chart/chart1';
 import Chart2 from './chart/chart2';
 import Chart3 from './chart/chart3';
+import Chart4 from './chart/chart4';
 import paintGif from '../assets/paint.gif';
 
 
@@ -33,12 +34,23 @@ export default function BasicGrid() {
         </Grid>
         <Grid item xs={7}>
           <Item>
-            <img src={paintGif} alt="Paint GIF" style={{ height: '295px' }}/>
+            <Chart4/>
           </Item>
         </Grid>
         <Grid item xs={5}>
           <Item>
             <Chart3/>
+          </Item>
+        </Grid>
+        <Grid item xs={7}>
+          <Item>
+            
+            <img src={paintGif} alt="Paint GIF" style={{ height: '295px' }}/>
+          </Item>
+        </Grid>
+        <Grid item xs={5}>
+          <Item>
+
           </Item>
         </Grid>
       </Grid>

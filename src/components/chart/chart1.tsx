@@ -95,9 +95,25 @@ const ChartCards = () => {
         itemStyle: {
           color: "rgba(255, 165, 0, 1)"
         },
-        //stack: "null",
         areaStyle: {
-          color: "rgba(255, 165, 0, 0.9)",  
+          color: {
+            type: "linear",
+            x: 0,
+            y: 0,
+            x2: 0,
+            y2: 1,
+            colorStops: [
+              {
+                offset: 0,
+                color: "rgba(255, 165, 0, 0.9)" // Cor da área abaixo da linha
+              },
+              {
+                offset: 1,
+                color: "rgba(255, 165, 0, 0)" // Cor transparente para o topo da área
+              }
+            ]
+          },
+          z: 3 // Valor maior para a área da Temperatura ficar na frente
         },
         emphasis: {
           focus: "series",
@@ -113,9 +129,25 @@ const ChartCards = () => {
         itemStyle: {
           color: "rgba(0, 0, 255, 1)"
         },
-        //stack: "null",
         areaStyle: {
-          color: "rgba(0, 0, 255, 0.5)",  
+          color: {
+            type: "linear",
+            x: 0,
+            y: 0,
+            x2: 0,
+            y2: 1,
+            colorStops: [
+              {
+                offset: 0,
+                color: "rgba(0, 0, 255, 0.5)" // Cor da área abaixo da linha
+              },
+              {
+                offset: 1,
+                color: "rgba(0, 0, 255, 0)" // Cor transparente para o topo da área
+              }
+            ]
+          },
+          z: 2 // Valor intermediário para a área da Chuva ficar no meio
         },
         emphasis: {
           focus: "series",
@@ -131,9 +163,25 @@ const ChartCards = () => {
         itemStyle: {
           color: "rgba(78, 197, 241, 1)"
         },
-        //stack: "null",
         areaStyle: {
-          color: "rgba(78, 197, 241, 0.5)", 
+          color: {
+            type: "linear",
+            x: 0,
+            y: 0,
+            x2: 0,
+            y2: 1,
+            colorStops: [
+              {
+                offset: 0,
+                color: "rgba(78, 197, 241, 0.5)" // Cor da área abaixo da linha
+              },
+              {
+                offset: 1,
+                color: "rgba(78, 197, 241, 0)" // Cor transparente para o topo da área
+              }
+            ]
+          },
+          z: 1 // Valor menor para a área da Umidade ficar atrás
         },
         emphasis: {
           focus: "series",
