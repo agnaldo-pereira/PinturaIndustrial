@@ -34,7 +34,8 @@ export default function BasicGrid() {
         </Grid>
         <Grid item xs={7}>
           <Item>
-            <Chart4/>
+            {/*<Chart4/>*/}
+            <img src={paintGif} alt="Paint GIF" style={{ height: '295px' }}/>
           </Item>
         </Grid>
         <Grid item xs={5}>
@@ -42,9 +43,8 @@ export default function BasicGrid() {
             <Chart3/>
           </Item>
         </Grid>
-        <Grid item xs={7}>
+        {/*<Grid item xs={7}>
           <Item>
-            
             <img src={paintGif} alt="Paint GIF" style={{ height: '295px' }}/>
           </Item>
         </Grid>
@@ -52,7 +52,7 @@ export default function BasicGrid() {
           <Item>
 
           </Item>
-        </Grid>
+        </Grid>*/}
       </Grid>
     </Box>
   );
