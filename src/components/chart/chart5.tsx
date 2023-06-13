@@ -8,11 +8,11 @@ const ChartCards = () => {
   const fetchData = async () => {
     try {
       const response1 = await axios.get<any>(
-        "https://api.thingspeak.com/channels/1956370/fields/2.json?results=1"
+        "https://api.thingspeak.com/channels/1956370/fields/4.json?results=1"
       );
 
       const data1: number[] = response1.data.feeds.map(
-        (feed: any) => feed.field2
+        (feed: any) => feed.field4
       );
 
       setData([data1]);
