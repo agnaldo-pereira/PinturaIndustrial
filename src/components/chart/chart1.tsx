@@ -88,6 +88,7 @@ const ChartCards = () => {
     series: [
       {
         name: "Temperatura",
+        showSymbol: false,
         type: "line",
         lineStyle: {
           color: "rgba(255, 165, 0, 1)"
@@ -122,6 +123,7 @@ const ChartCards = () => {
       },
       {
         name: "Chuva",
+        showSymbol: false,
         type: "line",
         lineStyle: {
           color: "rgba(0, 0, 255, 1)"
@@ -156,6 +158,7 @@ const ChartCards = () => {
       },
       {
         name: "Umidade",
+        showSymbol: false,
         type: "line",
         lineStyle: {
           color: "rgba(78, 197, 241, 1)"

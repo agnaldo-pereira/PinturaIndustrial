@@ -12,41 +12,43 @@ import paintGif from '../assets/paint.gif';
 
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#ffffff', // #fff
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'center',
   color: theme.palette.text.secondary,
+  border: "solid 1px #e3e2e1",
+  borderRadius: "0px"
 }));
 
 export default function BasicGrid() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, background: "", padding: "1rem" }}>
       <Grid container spacing={2}>
         <Grid item xs={6}>
-          <Item>
-            <Chart2/> {/*Necessidade de aquecimento*/}
+          <Item elevation={0}>
+            <Chart2 /> {/*Necessidade de aquecimento*/}
           </Item>
         </Grid>
         <Grid item xs={6}>
-          <Item>
-            <Chart5/> {/*Temperatura da peça*/}
-          </Item> 
+          <Item elevation={0}>
+            <Chart5 /> {/*Temperatura da peça*/}
+          </Item>
         </Grid>
         <Grid item xs={6}>
-          <Item>
-            <Chart3/> {/*Umidade relativa do ar*/}
+          <Item elevation={0}>
+            <Chart3 /> {/*Umidade relativa do ar*/}
             {/*<img src={paintGif} alt="Paint GIF" style={{ height: '295px' }}/>*/}
           </Item>
         </Grid>
         <Grid item xs={6}>
-          <Item>
-            <Chart4/> {/*Temperatura do ar*/}
+          <Item elevation={0}>
+            <Chart4 /> {/*Temperatura do ar*/}
           </Item>
         </Grid>
         <Grid item xs={12}>
-          <Item>
-            <Chart1/>
+          <Item elevation={0}>
+            <Chart1 />
           </Item>
         </Grid>
       </Grid>
