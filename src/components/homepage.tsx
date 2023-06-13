@@ -7,6 +7,7 @@ import Chart1 from './chart/chart1';
 import Chart2 from './chart/chart2';
 import Chart3 from './chart/chart3';
 import Chart4 from './chart/chart4';
+import Chart5 from './chart/chart5';
 import paintGif from '../assets/paint.gif';
 
 
@@ -22,37 +23,32 @@ export default function BasicGrid() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
-        <Grid item xs={7}>
+        <Grid item xs={6}>
+          <Item>
+            <Chart2/> {/*Necessidade de aquecimento*/}
+          </Item>
+        </Grid>
+        <Grid item xs={6}>
+          <Item>
+            <Chart5/> {/*Temperatura da peça*/}
+          </Item> 
+        </Grid>
+        <Grid item xs={6}>
+          <Item>
+            <Chart3/> {/*Umidade relativa do ar*/}
+            {/*<img src={paintGif} alt="Paint GIF" style={{ height: '295px' }}/>*/}
+          </Item>
+        </Grid>
+        <Grid item xs={6}>
+          <Item>
+            <Chart4/> {/*Temperatura do ar*/}
+          </Item>
+        </Grid>
+        <Grid item xs={12}>
           <Item>
             <Chart1/>
           </Item>
         </Grid>
-        <Grid item xs={5}>
-          <Item>
-            <Chart2/>
-          </Item> 
-        </Grid>
-        <Grid item xs={7}>
-          <Item>
-            {/*<Chart4/>*/}
-            <img src={paintGif} alt="Paint GIF" style={{ height: '295px' }}/>
-          </Item>
-        </Grid>
-        <Grid item xs={5}>
-          <Item>
-            <Chart3/>
-          </Item>
-        </Grid>
-        {/*<Grid item xs={7}>
-          <Item>
-            <img src={paintGif} alt="Paint GIF" style={{ height: '295px' }}/>
-          </Item>
-        </Grid>
-        <Grid item xs={5}>
-          <Item>
-
-          </Item>
-        </Grid>*/}
       </Grid>
     </Box>
   );

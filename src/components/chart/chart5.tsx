@@ -8,11 +8,11 @@ const ChartCards = () => {
   const fetchData = async () => {
     try {
       const response1 = await axios.get<any>(
-        "https://api.thingspeak.com/channels/1956370/fields/5.json?results=1"
+        "https://api.thingspeak.com/channels/1956370/fields/2.json?results=1"
       );
 
       const data1: number[] = response1.data.feeds.map(
-        (feed: any) => feed.field5
+        (feed: any) => feed.field2
       );
 
       setData([data1]);
@@ -33,7 +33,7 @@ const ChartCards = () => {
 
   const option = {
     title: {
-        text: "Necessidade de aquecimento",
+        text: "Temperatura da peça",
       },
     series: [
       {
@@ -42,10 +42,10 @@ const ChartCards = () => {
         startAngle: 200,
         endAngle: -20,
         min: 0,
-        max: 20,
+        max: 60,
         splitNumber: 10,//12,
         itemStyle: {
-          color: '#ff5959'
+          color: '#00c400'
         },
         progress: {
           show: true,
@@ -109,10 +109,9 @@ const ChartCards = () => {
         startAngle: 200,
         endAngle: -20,
         min: 0,
-        max: 20,
+        max: 60,
         itemStyle: {
-          //color: '#FD7347'
-          color: '#ff0000'
+          color: '#008000'
         },
         progress: {
           show: true,
