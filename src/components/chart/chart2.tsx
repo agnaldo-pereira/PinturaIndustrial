@@ -34,6 +34,9 @@ const ChartCards = () => {
   const option = {
     title: {
         text: "Necessidade de aquecimento",
+        textStyle: {
+          fontSize: 24
+        }
       },
     series: [
       {
@@ -77,7 +80,8 @@ const ChartCards = () => {
         },
         axisLabel: {
           distance: -20,
-          color: '#999',
+          //color: '#999',
+          color: '#353535',
           fontSize: 20
         },
         anchor: {
@@ -95,7 +99,9 @@ const ChartCards = () => {
           fontSize: 30,
           fontWeight: 'bolder',
           formatter: '{value} °C',
-          color: 'inherit'
+          //color: 'inherit'
+          //color: '#ff5959',
+          color: '#ff0000',
         },
         data: [
           {

@@ -46,6 +46,9 @@ const ChartCards = () => {
   const options = {
     title: {
       text: "Estação meteorológica",
+      textStyle: {
+        fontSize: 24
+      }
     },
     tooltip: {
       trigger: "axis",
@@ -58,6 +61,9 @@ const ChartCards = () => {
     },
     legend: {
       data: ["Temperatura", "Chuva", "Umidade"],
+      textStyle: {
+        fontSize: 24
+      }
     },
     toolbox: {
       feature: {

@@ -34,6 +34,9 @@ const ChartCards = () => {
   const option = {
     title: {
         text: "Umidade relativa do ar",
+        textStyle: {
+          fontSize: 24
+        }
       },
     series: [
       {
@@ -77,7 +80,8 @@ const ChartCards = () => {
         },
         axisLabel: {
           distance: -20,
-          color: '#999',
+          //color: '#999',
+          color: '#353535',
           fontSize: 20
         },
         anchor: {
@@ -95,7 +99,8 @@ const ChartCards = () => {
           fontSize: 30,
           fontWeight: 'bolder',
           formatter: '{value}%',
-          color: 'inherit'
+          //color: 'inherit'
+          color: '#0080c0'
         },
         data: [
           {

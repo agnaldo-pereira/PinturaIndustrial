@@ -18,7 +18,7 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: 'center',
   color: theme.palette.text.secondary,
   border: "solid 1px #e3e2e1",
-  borderRadius: "0px"
+  borderRadius: "5px"
 }));
 
 export default function BasicGrid() {
@@ -26,6 +26,7 @@ export default function BasicGrid() {
     <Box sx={{ flexGrow: 1, background: "", padding: "1rem" }}>
       <Grid container spacing={2}>
         <Grid item xs={6}>
+          {/*<Item elevation={0} style={{ backgroundColor: '#000000' }}>*/}
           <Item elevation={0}>
             <Chart2 /> {/*Necessidade de aquecimento*/}
           </Item>
